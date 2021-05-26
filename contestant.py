@@ -10,7 +10,7 @@ class Contestant:
        
 
     def notify(self):
-        self.ui.recieved_message(self.first_name)
+        self.ui.recieve_message(self.first_name)
 
     def notify_winner (self):
         self.ui.recieve_winner(self.first_name)

@@ -1,6 +1,4 @@
 from manager import Marketing_firm
-
-
 import random
 
 class Sweepstake: 
@@ -14,13 +12,7 @@ class Sweepstake:
         self.contestants.update({f'{contestant.registration}' : contestant})
 
     def get_winner(self):
-        length = len(self.contestants) - 1 
-        array = []
-        for i in self.contestants:
-            array.append(i)
-
-        random_number = random.randint(0, length)
-        winner = array[random_number]
+        winner = random.choice(list(self.contestants.keys()))
         return winner
         
 
