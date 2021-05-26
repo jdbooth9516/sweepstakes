@@ -5,7 +5,7 @@ from stack_manager import *
 
 class Marketing_firm:
     def __init__(self,manager_type):
-        self.ui = User_interface
+        self.ui = User_interface()
         self.manager_type = manager_type
         
     def add_sweepstake(self):

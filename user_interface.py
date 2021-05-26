@@ -13,7 +13,7 @@ class User_interface:
         new_contestant = Contestant(fname, lname, email, registration)
         return new_contestant
 
-    def get_manager_type():
+    def get_manager_type(self):
         manager_type = input("Select a data type to order Sweepstakes (stack or queue): ")
         return manager_type
 

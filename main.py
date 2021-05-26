@@ -1,5 +1,5 @@
 from simulation import *
-from sweepstake import * 
+
 
 def main():
 
