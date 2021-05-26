@@ -1,5 +1,6 @@
 from contestant import Contestant
 
+
 class User_interface:
     def __init__(self):
         pass
@@ -28,11 +29,21 @@ class User_interface:
         else: 
             return True
 
+    def finished_sweepstakes(self):
+        entry_finished = input("Would you like to add another sweepstake (y/n): ")
+        if entry_finished == "n":
+            return True
+
+    def finished_contest(self):
+        contest_finished = input('Would you like to run another sweepstake (y/n): ')
+        if contest_finished == "n": 
+            return True
+
+
     def close(self):
         print("Registration has closed stand by for the winner.")
 
-    def show_info(self, first_name, last_name, email, number):
-        print(f"The winner is number{number}, {first_name}, {last_name}, {email}: Email with the prize information will will follow shortly.")
+    def show_info(self, first_name, last_name, email, number, sweepstake):
+        print(f"The winner of {sweepstake} is contestant number {number}, name: {first_name}, {last_name},\n email: {email}\n Email with the prize information will will follow shortly.")
 
-        
 

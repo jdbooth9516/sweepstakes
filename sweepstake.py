@@ -14,16 +14,22 @@ class Sweepstake:
         self.contestants.update({f'{contestant.registration}' : contestant})
 
     def get_winner(self):
-        length = len(self.contestants)
-        random_number = random.randint(0, length)
+        length = len(self.contestants) - 1 
+        array = []
+        for i in self.contestants:
+            array.append(i)
 
-        return random_number
+        random_number = random.randint(0, length)
+        winner = array[random_number]
+        return winner
+        
 
     def contestants_info(self, winner):
-        first_name = self.contestants.winner.fname
-        last_name = self.contestants.winner.lname
-        email = self.contestants.winner.email
-        number = self.contestants.winner.number
+        first_name = self.contestants.get(winner).first_name
+        last_name = self.contestants.get(winner).last_name
+        email = self.contestants.get(winner).email
+        number = self.contestants.get(winner).registration
+        self.ui.show_info(first_name, last_name, email, number, self.name)
 
         
        

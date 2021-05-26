@@ -10,6 +10,7 @@ class Run_simulation:
         self.ui = User_interface()
         self.choice = None
         self.firm = None
+        self.loop = False
   
 
     
@@ -18,43 +19,52 @@ class Run_simulation:
         self.choice = manager_type
         # if statement to see which data structure to init
 
-    def create_steepstake(self):
+    def create_sweepstake(self):
         current_sweepstake = self.choice.get_sweepstake()
         return current_sweepstake
 
 
     def run(self):
         self.choose_manager_type()
-
+        self.loop = True
+        # add main loop here 
+        
+            # choose which data type to use
         if self.choice == 'stack':
             self.choice = Stack_manager()
             manager = Marketing_firm(self.choice)
         elif self.choice == 'queue':
             self.choice = Queue_manager()
             manager = Marketing_firm(self.choice)
+        # creating the sweepstakes  
+        adding_sweepstakes = True
+        while adding_sweepstakes:
+            manager.add_sweepstake()
+            if self.ui.finished_sweepstakes():
+                adding_sweepstakes = False   
 
-        manager.add_sweepstake()
+        while self.loop:
+            # pulling  the next sweepstake
+            active_sweepstake = self.create_sweepstake()
+            sweepstake = Sweepstake(active_sweepstake)
 
-        #befor call the sweepstake get a sweepstake 
-        active_sweepstake = self.create_steepstake()
-        sweepstake = Sweepstake(active_sweepstake)
-        
-        add_contestant = True
-        while add_contestant:
-            person = self.ui.contestant_info()
-            sweepstake.get_contestants(person)
-            finished = self.ui.finished_entry() # make this function 
-            if finished:
-                add_contestant = False
+            add_contestant = True
+            while add_contestant:
+                person = self.ui.contestant_info()
+                sweepstake.get_contestants(person)
+                finished = self.ui.finished_entry() # make this function 
+                if finished:
+                    add_contestant = False
 
-        self.ui.close()
-        winner = sweepstake.get_winner()
-        winner_info = sweepstake.contestants_info()
+            self.ui.close()
+            winner = sweepstake.get_winner()
+            sweepstake.contestants_info(winner)
 
-        print(self.choice)
-        print(sweepstake.name)
-        print(sweepstake.contestants)
+
+            if self.ui.finished_contest():
+                self.loop = False
             
+
 
 
 
