@@ -10,10 +10,9 @@ class Run_simulation:
         self.ui = User_interface()
         self.choice = None
         self.firm = None
-   
+  
 
-        
-
+    
     def choose_manager_type(self):
         manager_type = self.ui.get_manager_type()
         self.choice = manager_type
@@ -26,21 +25,31 @@ class Run_simulation:
 
     def run(self):
         self.choose_manager_type()
+
         if self.choice == 'stack':
-            manager = Marketing_firm(self.stack)
-        elif self.choice == 'queue':
+            self.choice = Stack_manager()
             manager = Marketing_firm(self.choice)
+        elif self.choice == 'queue':
+            self.choice = Queue_manager()
+            manager = Marketing_firm(self.choice)
+
         manager.add_sweepstake()
 
         #befor call the sweepstake get a sweepstake 
         active_sweepstake = self.create_steepstake()
         sweepstake = Sweepstake(active_sweepstake)
-        add_contestanst = True
-        while add_contestanst:
-            sweepstake.get_contestants()
+        
+        add_contestant = True
+        while add_contestant:
+            person = self.ui.contestant_info()
+            sweepstake.get_contestants(person)
             finished = self.ui.finished_entry() # make this function 
             if finished:
-                add_contestanst = False
+                add_contestant = False
+
+        self.ui.close()
+        winner = sweepstake.get_winner()
+        winner_info = sweepstake.contestants_info()
 
         print(self.choice)
         print(sweepstake.name)
