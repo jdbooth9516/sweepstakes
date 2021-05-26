@@ -3,6 +3,7 @@ from stack_manager import Stack_manager
 from manager import *
 from user_interface import User_interface
 from stack_manager import Stack_manager
+from contestant import Contestant
 
 class Run_simulation:
 
@@ -11,6 +12,7 @@ class Run_simulation:
         self.choice = None
         self.firm = None
         self.loop = False
+        
   
 
     
@@ -32,8 +34,10 @@ class Run_simulation:
             # choose which data type to use
         if self.choice == 'stack':
             self.choice = Stack_manager()
+            # here the dependency is used to pass the data type and sweepstake info to the marketying firm
             manager = Marketing_firm(self.choice)
         elif self.choice == 'queue':
+            # Same here for dependency
             self.choice = Queue_manager()
             manager = Marketing_firm(self.choice)
         # creating the sweepstakes  
@@ -51,7 +55,8 @@ class Run_simulation:
             add_contestant = True
             while add_contestant:
                 person = self.ui.contestant_info()
-                sweepstake.get_contestants(person)
+                contestant = Contestant(self.ui.first, self.ui.last, self.ui.email, self.ui.registration)
+                sweepstake.get_contestants(contestant)
                 finished = self.ui.finished_entry() # make this function 
                 if finished:
                     add_contestant = False

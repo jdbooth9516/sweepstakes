@@ -1,18 +1,22 @@
-from contestant import Contestant
+#from contestant import Contestant
 
 
 class User_interface:
     def __init__(self):
-        pass
-
+        self.first = ''
+        self.last = ' '
+        self.email = ''
+        self.registration = ''
+ 
     def contestant_info(self):
-        fname = input("Please enter your first name: ")
-        lname = input("Please enter you last name: ")
-        email = input("Please enter you email: ")
-        registration = int(input("Please enter a four digit number: "))
+        self.first = input("Please enter your first name: ")
+        self.last = input("Please enter you last name: ")
+        self.email = input("Please enter you email: ")
+        self.registration = int(input("Please enter a four digit number: "))
 
-        new_contestant = Contestant(fname, lname, email, registration)
-        return new_contestant
+        #new_contestant = Contestant(fname, lname, email, registration)
+        #return new_contestant
+        
 
     def get_manager_type(self):
         manager_type = input("Select a data type to order Sweepstakes (stack or queue): ")
@@ -45,5 +49,12 @@ class User_interface:
 
     def show_info(self, first_name, last_name, email, number, sweepstake):
         print(f"The winner of {sweepstake} is contestant number {number}, name: {first_name}, {last_name},\n email: {email}\n Email with the prize information will will follow shortly.")
+
+    def recieve_message(self, first_name):
+        print(f"{first_name} has recieved the message")
+
+    def recieve_winner(self, first_name):
+        print(f"{first_name} has recieved prize information")
+
 
 
