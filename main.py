@@ -1,9 +1,12 @@
 from simulation import *
+from sweepstake import * 
 
-class Main: 
-    def __init(self):
+def main():
 
-        self.start = Run_simulation()
+    simulation = Run_simulation()
+    simulation.run()
+
+
+main()
     
-
-Main()
+    
