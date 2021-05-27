@@ -29,8 +29,7 @@ class Run_simulation:
     def run(self):
         self.choose_manager_type()
         self.loop = True
-        # add main loop here 
-        
+      
             # choose which data type to use
         if self.choice == 'stack':
             self.choice = Stack_manager()
@@ -40,38 +39,73 @@ class Run_simulation:
             # Same here for dependency
             self.choice = Queue_manager()
             manager = Marketing_firm(self.choice)
-        # creating the sweepstakes  
-        adding_sweepstakes = True
-        while adding_sweepstakes:
-            manager.add_sweepstake()
-            if self.ui.finished_sweepstakes():
-                adding_sweepstakes = False   
 
+
+        #MAIN LOOP
         while self.loop:
-            # pulling  the next sweepstake
-            active_sweepstake = self.create_sweepstake()
-            sweepstake = Sweepstake(active_sweepstake)
+        # Main menu routing
+            user_selection = self.ui.main_menu()
+            if user_selection == 1: 
+                adding_sweepstakes = True
+                while adding_sweepstakes:
+                    manager.add_sweepstake()
+                    if self.ui.finished_sweepstakes():
+                        adding_sweepstakes = False 
 
-            add_contestant = True
-            while add_contestant:
-                person = self.ui.contestant_info()
-                contestant = Contestant(self.ui.first, self.ui.last, self.ui.email, self.ui.registration)
-                sweepstake.get_contestants(contestant)
-                finished = self.ui.finished_entry() # make this function 
-                if finished:
-                    add_contestant = False
+            elif user_selection == 2:  
+                active_sweepstake = self.create_sweepstake()
+                sweepstake = Sweepstake(active_sweepstake)
+                add_contestant = True
+                while add_contestant:
+                    person = self.ui.contestant_info(sweepstake.name)
+                    contestant = Contestant(self.ui.first, self.ui.last, self.ui.email, self.ui.registration)
+                    sweepstake.get_contestants(contestant)
+                    finished = self.ui.finished_entry()  
+                    if finished:
+                        add_contestant = False
 
-            self.ui.close()
-            winner = sweepstake.get_winner()
-            sweepstake.contestants_info(winner)
-
-
-            if self.ui.finished_contest():
-                self.loop = False
+            elif user_selection == 3:
+                self.ui.close()
+                winner = sweepstake.get_winner()
+                sweepstake.contestants_info(winner)
+                
+            elif user_selection == 4:
+                if self.ui.finished_contest():
+                    self.loop = False
             
 
+        # creating the sweepstakes  
+       # adding_sweepstakes = True
+       # while adding_sweepstakes:
+       #     manager.add_sweepstake()
+       #     if self.ui.finished_sweepstakes():
+       #         adding_sweepstakes = False   
 
-
+        #while self.loop:
+        #    # pulling  the next sweepstake
+        #    active_sweepstake = self.create_sweepstake()
+        #    sweepstake = Sweepstake(active_sweepstake)
+#
+        #    add_contestant = True
+        #    while add_contestant:
+        #        person = self.ui.contestant_info(sweepstake.name)
+        #        contestant = Contestant(self.ui.first, self.ui.last, self.ui.email, self.ui.registration)
+        #        sweepstake.get_contestants(contestant)
+        #        finished = self.ui.finished_entry() # make this function 
+        #        if finished:
+        #            add_contestant = False
+#
+        #    self.ui.close()
+        #    winner = sweepstake.get_winner()
+        #    sweepstake.contestants_info(winner)
+#
+#
+        #    if self.ui.finished_contest():
+        #        self.loop = False
+        #    
+#
+#
+#
 
 
 

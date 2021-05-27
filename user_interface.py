@@ -7,12 +7,23 @@ class User_interface:
         self.last = ' '
         self.email = ''
         self.registration = ''
+
+    def main_menu(self):
+        print("""Welcome to the main menu \n\t 
+        press -1- to create a contest\n\t 
+        press -2- to add a contestant\n\t
+        press -3- to pick a winner\n\t
+        press -4- to quit program""")
+        choice = int(input("select a option: "))
+
+        return choice
  
-    def contestant_info(self):
-        self.first = input("Please enter your first name: ")
-        self.last = input("Please enter you last name: ")
-        self.email = input("Please enter you email: ")
-        self.registration = int(input("Please enter a four digit number: "))
+    def contestant_info(self, contest_name):
+        print(f"Enter contestand for the {contest_name} sweepstake\n")
+        self.first = input("Please enter contestant's first name: ")
+        self.last = input("Please enter contestant's last name: ")
+        self.email = input("Please enter contestant's email: ")
+        self.registration = int(input("Please enter contestant's four digit registration number: "))
 
         #new_contestant = Contestant(fname, lname, email, registration)
         #return new_contestant
@@ -27,7 +38,7 @@ class User_interface:
         return prize
 
     def finished_entry(self):
-        finished = input("Are there more contestants to enter (y/n): ")
+        finished = input("Would anyone else like to join the sweepstake (y/n): ")
         if finished == 'y':
             return False
         else: 
@@ -47,8 +58,8 @@ class User_interface:
     def close(self):
         print("Registration has closed stand by for the winner.")
 
-    def show_info(self, first_name, last_name, email, number, sweepstake):
-        print(f"The winner of {sweepstake} is contestant number {number}, name: {first_name}, {last_name},\n email: {email}\n Email with the prize information will will follow shortly.")
+    #def show_info(self, first_name, last_name, email, number, sweepstake):
+    #    print(f"The winner of {sweepstake} is contestant number {number}, name: {first_name}, {last_name},\n email: #{email}\n Email with the prize information will will follow shortly.")
 
     def recieve_message(self, first_name):
         print(f"{first_name} has recieved the message")
