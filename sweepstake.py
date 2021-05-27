@@ -18,10 +18,6 @@ class Sweepstake:
 
     def contestants_info(self, winner):
         
-        #first_name = self.contestants.get(winner).first_name
-        #last_name = self.contestants.get(winner).last_name
-        #email = self.contestants.get(winner).email
-        #number = self.contestants.get(winner).registration
 
         for contestant in self.contestants:
             if contestant == winner:

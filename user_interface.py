@@ -25,10 +25,6 @@ class User_interface:
         self.email = input("Please enter contestant's email: ")
         self.registration = int(input("Please enter contestant's four digit registration number: "))
 
-        #new_contestant = Contestant(fname, lname, email, registration)
-        #return new_contestant
-        
-
     def get_manager_type(self):
         manager_type = input("Select a data type to order Sweepstakes (stack or queue): ")
         return manager_type
@@ -58,8 +54,6 @@ class User_interface:
     def close(self):
         print("Registration has closed stand by for the winner.")
 
-    #def show_info(self, first_name, last_name, email, number, sweepstake):
-    #    print(f"The winner of {sweepstake} is contestant number {number}, name: {first_name}, {last_name},\n email: #{email}\n Email with the prize information will will follow shortly.")
 
     def recieve_message(self, first_name):
         print(f"{first_name} has recieved the message")
